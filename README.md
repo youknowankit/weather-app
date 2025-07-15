@@ -10,12 +10,6 @@
 - 📱 Mobile-friendly design
 - 🛡️ Error handling for invalid inputs
 
-## How to Use
-
-
-### Live Demo
-[View Demo](https://yourusername.github.io/weather-app) *(replace with your GitHub Pages link)*
-
 ### Local Setup
 1. **Get an API Key** (free):
    - Sign up at [OpenWeatherMap](https://openweathermap.org/)
