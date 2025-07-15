@@ -45,3 +45,10 @@ function getWeather() {
       '<p style="color:red;">Please enter a city name.</p>';
   }
 }
+
+// Add Enter key listener to the input field
+document.getElementById("cityInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    getWeather(); // Trigger search on Enter key
+  }
+});
