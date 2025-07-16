@@ -3,25 +3,16 @@ const apiKey = "API_KEY"; // Replace with your OpenWeather API key
 // Main function to get weather by city name
 async function getWeatherByCity(city) {
   const weatherResult = document.getElementById("weatherResult");
-
-  //Handles HTTP Errors:
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-
-  weatherResult.innerHTML = ` 
-    <p style="color:red;">
-    ${
-      error.message.includes("HTTP error")
-        ? "Weather service unavailable. Try later."
-        : "Something went wrong. Try again."
-    }
-    </p>`;
-
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   try {
     const response = await fetch(url);
+
+    //Handles HTTP Errors:
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
     const data = await response.json();
 
     if (data.cod === "404") {
@@ -41,8 +32,14 @@ async function getWeatherByCity(city) {
     }
   } catch (error) {
     console.error("Error:", error);
-    weatherResult.innerHTML =
-      '<p style="color:red;">Something went wrong. Try again later.</p>';
+    weatherResult.innerHTML = ` 
+    <p style="color:red;">
+    ${
+      error.message.includes("HTTP error")
+        ? "Weather service unavailable. Try later."
+        : "Something went wrong. Try again."
+    }
+    </p>`;
   }
 }
 
