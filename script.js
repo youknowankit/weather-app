@@ -4,8 +4,19 @@ const apiKey = "API_KEY"; // Replace with your OpenWeather API key
 async function getWeatherByCity(city) {
   const weatherResult = document.getElementById("weatherResult");
 
-  weatherResult.innerHTML =
-    '<p style="color:#2563eb;">Fetching weather data...</p>';
+  //Handles HTTP Errors:
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  weatherResult.innerHTML = ` 
+    <p style="color:red;">
+    ${
+      error.message.includes("HTTP error")
+        ? "Weather service unavailable. Try later."
+        : "Something went wrong. Try again."
+    }
+    </p>`;
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
